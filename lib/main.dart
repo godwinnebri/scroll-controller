@@ -7,11 +7,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -29,8 +27,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late ScrollController scrollController;
-
-  Color borderColor = Colors.white;
+  Color containerColor = Colors.white;
   int containerIndex = 0;
 
   @override
@@ -38,20 +35,20 @@ class _HomePageState extends State<HomePage> {
     scrollController = ScrollController()
       ..addListener(() {
         if (scrollController.offset == 0 && scrollController.offset < 215) {
-          borderColor = Colors.green;
-          containerIndex = 0;
+          containerColor = Colors.green;
+          containerIndex = 1;
         } else if (scrollController.offset > 215 &&
             scrollController.offset < 430) {
-          borderColor = Colors.blue;
-          containerIndex = 1;
+          containerColor = Colors.blue;
+          containerIndex = 2;
         } else if (scrollController.offset > 430 &&
             scrollController.offset < 650) {
-          borderColor = Colors.red;
-          containerIndex = 2;
+          containerColor = Colors.red;
+          containerIndex = 3;
         } else if (scrollController.offset > 650 &&
             scrollController.offset < 860) {
-          borderColor = Colors.purple;
-          containerIndex = 3;
+          containerColor = Colors.purple;
+          containerIndex = 4;
         }
         debugPrint(scrollController.offset.toString());
         setState(() {});
@@ -70,7 +67,8 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.all(8),
               width: 400,
               height: 200,
-              color: index == containerIndex ? borderColor : Colors.grey,
+              color:
+                  index == containerIndex ? containerColor : Colors.grey[300],
             );
           },
           controller: scrollController,
